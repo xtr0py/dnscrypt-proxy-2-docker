@@ -1,5 +1,5 @@
-FROM golang:1.10.3-alpine3.8 as build
-ENV RELEASE_TAG 2.0.16
+FROM golang:1.11-alpine3.8 as build
+ENV RELEASE_TAG 2.0.17
 RUN apk --no-cache add git && \
     git clone https://github.com/jedisct1/dnscrypt-proxy /go/src/github.com/jedisct1/ && \
     cd /go/src/github.com/jedisct1/dnscrypt-proxy && \
