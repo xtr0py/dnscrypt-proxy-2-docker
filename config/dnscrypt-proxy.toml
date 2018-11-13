@@ -22,8 +22,7 @@
 ## The proxy will automatically pick the fastest, working servers from the list.
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
-server_names = ['google', 'cloudflare', 'cloudflare-ipv6']
-
+server_names = ['google', 'cloudflare', 'powerdns-doh', 'dnscrypt-jp-blahdns-ipv4', 'quad9-dnscrypt-ip4-nofilter-alt']
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
 ## Note: When using systemd socket activation, choose an empty set (i.e. [] ).
@@ -42,7 +41,7 @@ max_clients = 250
 ipv4_servers = true
 
 # Use servers reachable over IPv6 -- Do not enable if you don't have IPv6 connectivity
-ipv6_servers = true
+ipv6_servers = false
 
 # Use servers implementing the DNSCrypt protocol
 dnscrypt_servers = true
@@ -112,7 +111,7 @@ cert_refresh_delay = 240
 ##
 ## People in China may need to use 114.114.114.114:53 here.
 
-fallback_resolver = '1.1.1.1:53'
+fallback_resolver = '114.114.114.114:53'
 
 
 ## Never try to use the system DNS settings; unconditionally use the
@@ -143,7 +142,7 @@ log_files_max_backups = 1
 ## also cause reliability issues with some stub resolvers. In
 ## particular, enabling this on macOS is not recommended.
 
-block_ipv6 = false
+block_ipv6 = true
 
 
 
