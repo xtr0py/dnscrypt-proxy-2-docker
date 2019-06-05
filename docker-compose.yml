@@ -2,7 +2,7 @@ version: '2'
 services:
   dnscrypt-proxy:
     restart: unless-stopped
-    image: 654c9711/dnscrypt-proxy-2
+    image: faicker/dnscrypt-proxy-2
     container_name: dnscrypt-proxy
     ports:
       - "53:53/udp"
