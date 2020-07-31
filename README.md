@@ -6,14 +6,15 @@ This is a Docker image containing [DNSCrypt Proxy 2.x](https://github.com/jedisc
 
 This image comes with a configuration which:
 
-* Looks up queries via DNS-over-HTTPS (DoH) to Google Public DNS (8.8.8.8) and Cloudflare DNS (1.1.1.1)
+* Looks up queries via DNS-over-HTTPS (DoH) and DNSCrypt
+* all DNSSEC/no logging/ no filtering servers enabled
 * Listens on all interfaces
 
 You can run with this configuration:
 
-`docker run -p 53:53/udp faicker/dnscrypt-proxy-2`
+`docker run -p 53:53/udp xtr0py/dnscrypt-proxy-2`
 
 If you wish to override the configuration:
 
-`docker run -p 53:53/udp  -v /path/to/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml faicker/dnscrypt-proxy-2`
+`docker run -p 53:53/udp  -v /path/to/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml xtr0py/dnscrypt-proxy-2`
 
