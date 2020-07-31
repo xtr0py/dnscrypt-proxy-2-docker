@@ -12,9 +12,9 @@ This image comes with a configuration which:
 
 You can run with this configuration:
 
-`docker run -p 53:53/udp xtr0py/dnscrypt-proxy-2`
+`docker run -p 53:53/udp xtr0py/dnscrypt-proxy-2-docker`
 
 If you wish to override the configuration:
 
-`docker run -p 53:53/udp  -v /path/to/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml xtr0py/dnscrypt-proxy-2`
+`docker run -p 53:53/udp  -v /path/to/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml xtr0py/dnscrypt-proxy-2-docker`
 
