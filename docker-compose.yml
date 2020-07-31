@@ -1,9 +1,9 @@
-version: '2'
+version: '3'
 services:
   dnscrypt-proxy:
     restart: unless-stopped
-    image: faicker/dnscrypt-proxy-2
-    container_name: dnscrypt-proxy
+    image: xtr0py/dnscrypt-proxy-2-docker
+    container_name: dnscrypt-proxy-2-docker
     ports:
       - "53:53/udp"
     #volumes:
