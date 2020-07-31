@@ -7,7 +7,7 @@ This is a Docker image containing [DNSCrypt Proxy 2.x](https://github.com/jedisc
 This image comes with a configuration which:
 
 * Looks up queries via DNS-over-HTTPS (DoH) and DNSCrypt
-* all DNSSEC/no logging/ no filtering servers enabled
+* all DNSSEC, no logging, no filtering servers enabled
 * Listens on all interfaces
 
 You can run with this configuration:
