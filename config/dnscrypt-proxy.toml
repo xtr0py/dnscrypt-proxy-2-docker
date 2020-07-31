@@ -22,7 +22,7 @@
 ## The proxy will automatically pick the fastest, working servers from the list.
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
-server_names = ['google', 'cloudflare', 'powerdns-doh', 'dnscrypt-jp-blahdns-ipv4', 'quad9-dnscrypt-ip4-nofilter-alt']
+# server_names = ['google', 'cloudflare', 'powerdns-doh', 'dnscrypt-jp-blahdns-ipv4', 'quad9-dnscrypt-ip4-nofilter-alt']
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
 ## Note: When using systemd socket activation, choose an empty set (i.e. [] ).
@@ -61,7 +61,8 @@ require_nolog = true
 # Server must not enforce its own blacklist (for parental control, ads blocking...)
 require_nofilter = true
 
-
+# Server names to avoid even if they match all criteria
+disabled_server_names = ['Yandex', 'Google', 'cloudflare']
 
 ## Always use TCP to connect to upstream servers
 
@@ -108,16 +109,37 @@ cert_refresh_delay = 240
 ## don't include host names without IP addresses.
 ## It will not be used if the configured system DNS works.
 ## A resolver supporting DNSSEC is recommended. This may become mandatory.
-##
-## People in China may need to use 114.114.114.114:53 here.
 
-fallback_resolver = '114.114.114.114:53'
+fallback_resolver = '9.9.9.9:53'
 
 
 ## Never try to use the system DNS settings; unconditionally use the
 ## fallback resolver.
 
 ignore_system_dns = true
+
+
+## Maximum time (in seconds) to wait for network connectivity before
+## initializing the proxy.
+## Useful if the proxy is automatically started at boot, and network
+## connectivity is not guaranteed to be immediately available.
+## Use 0 to not test for connectivity at all (not recommended),
+## and -1 to wait as much as possible.
+
+
+netprobe_timeout = 60
+
+
+## Address and port to try initializing a connection to, just to check
+## if the network is up. It can be any address and any port, even if
+## there is nothing answering these on the other side. Just don't use
+## a local address, as the goal is to check for Internet connectivity.
+## On Windows, a datagram with a single, nul byte will be sent, only
+## when the system starts.
+## On other operating systems, the connection will be initialized
+## but nothing will be sent at all.
+
+netprobe_address = '9.9.9.9:53'
 
 
 ## Automatic log files rotation
@@ -185,12 +207,12 @@ cache = true
 
 ## Cache size
 
-cache_size = 256
+cache_size = 4096
 
 
 ## Minimum TTL for cached entries
 
-cache_min_ttl = 600
+cache_min_ttl = 2400
 
 
 ## Maximum TTL for cached entries
