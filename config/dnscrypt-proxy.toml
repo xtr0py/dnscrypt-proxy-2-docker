@@ -460,7 +460,7 @@ cache_neg_max_ttl = 600
 ## A script to build blocklists from public feeds can be found in the
 ## `utils/generate-domains-blocklists` directory of the dnscrypt-proxy source code.
 
-[blocked_names]
+#[blocked_names]
 
   ## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
 
@@ -488,7 +488,7 @@ cache_neg_max_ttl = 600
 ##   fe80:abcd:*
 ##   192.168.1.4
 
-[blocked_ips]
+#[blocked_ips]
 
   ## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
 
@@ -516,7 +516,7 @@ cache_neg_max_ttl = 600
 ##
 ## Time-based rules are also supported to make some websites only accessible at specific times of the day.
 
-[allowed_names]
+#[allowed_names]
 
   ## Path to the file of allow list rules (absolute, or relative to the same directory as the config file)
 
