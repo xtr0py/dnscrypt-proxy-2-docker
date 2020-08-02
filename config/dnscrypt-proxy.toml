@@ -459,6 +459,7 @@ cache_neg_max_ttl = 600
 ## Example blocklist files can be found at https://download.dnscrypt.info/blocklists/
 ## A script to build blocklists from public feeds can be found in the
 ## `utils/generate-domains-blocklists` directory of the dnscrypt-proxy source code.
+## This section was throwing errors; this was previosly named blacklist in earlier versions. 
 
 #[blocked_names]
 
@@ -549,7 +550,7 @@ cache_neg_max_ttl = 600
 ## {after='21:00', before= '7:00'} matches 0:00-7:00 and 21:00-0:00
 ## {after= '9:00', before='18:00'} matches 9:00-18:00
 
-[schedules]
+#[schedules]
 
   # [schedules.'time-to-sleep']
   # mon = [{after='21:00', before='7:00'}]
@@ -655,7 +656,7 @@ fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familys
 # If you are not using the standard root CA, an optional "root_ca"
 # property set to the path to a root CRT file can be added to a server entry.
 
-[doh_client_x509_auth]
+# [doh_client_x509_auth]
 
 #
 # creds = [
@@ -731,7 +732,7 @@ skip_incompatible = true
 ## Do not enable unless you know what DNS64 is and why you need it, or else
 ## you won't be able to connect to anything at all.
 
-[dns64]
+# [dns64]
 
 ## (Option 1) Static prefix(es) as Pref64::/n CIDRs.
 # prefix = ["64:ff9b::/96"]
