@@ -11,10 +11,10 @@ This image comes with a configuration which:
 * Listens on all interfaces
 
 The unstable docker container is being actively edited with the following differences
--[x] DNScrypt updated 2.0.44; stable is using an older version
--[x] Updated public-resolvers to v3
--[x]  Reverted to master with a much simpler .toml file
--[ ]  Trial performance with pihole after disabling DNScrypt cache'ing
+- [x] DNScrypt updated 2.0.44; stable is using an older version
+- [x] Updated public-resolvers to v3
+- [x]  Reverted to master with a much simpler .toml file
+- [ ]  Trial performance with pihole after disabling DNScrypt cache'ing
 
 You can run with this configuration:
 
