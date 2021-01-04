@@ -9,10 +9,10 @@ This image comes with a configuration which:
 - [x] DNSSEC, no logging, no filtering servers enabled
 - [x] Listens on all interfaces
 - [x] Cloudflare, Google, and Yandex sites are excluded
-- [x] DNScrypt-proxy updated to 2.0.44
+- [x] DNScrypt-proxy stable running 2.0.44; unstable running 2.0.45
 - [x] Updated public-resolvers to v3
 - [x] Reverted to simpler .toml file
-- [ ] Trial performance with pihole after disabling DNScrypt cache'ing
+
 
 You can run with this configuration:
 
