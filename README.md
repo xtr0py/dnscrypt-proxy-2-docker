@@ -6,13 +6,12 @@ This is a Docker image containing [DNSCrypt Proxy 2.x](https://github.com/jedisc
 
 This image comes with a configuration which:
 - [x] Looks up queries via DNS-over-HTTPS (DoH) and DNSCrypt
-- [x] DNSSEC, no logging, no filtering servers enabled
+- [x] Use only DNSSEC, no logging, no filtering servers
 - [x] Listens on all interfaces
-- [x] Cloudflare, Google, and Yandex sites are excluded
-- [x] DNScrypt-proxy updated to 2.0.44
-- [x] Updated public-resolvers to v3
-- [x] Reverted to simpler .toml file
-- [ ] Trial performance with pihole after disabling DNScrypt cache'ing
+- [x] Excludes Cloudflare, Google, and Yandex servers
+- [x] updated DNScrypt-proxy 2.0.45 
+- [x] Uses public-resolvers v3
+
 
 You can run with this configuration:
 
