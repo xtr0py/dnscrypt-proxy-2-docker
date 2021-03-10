@@ -8,8 +8,8 @@ This image comes with a configuration which:
 - [x] Looks up queries via DNS-over-HTTPS (DoH) and DNSCrypt
 - [x] Use only DNSSEC, no logging, no filtering servers
 - [x] Listens on all interfaces
-- [x] Excludes Cloudflare, Google, and Yandex severs
-- [x] updated DNScrypt-proxy (stable) to 2.0.44; unstable running 2.0.45 
+- [x] Excludes Cloudflare, Google, and Yandex servers
+- [x] updated DNScrypt-proxy 2.0.45 
 - [x] Uses public-resolvers v3
 
 
