@@ -8,3 +8,5 @@ services:
 #        volumes:
 #           - '/path/to/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml'
         image: xtr0py/dnscrypt-proxy-2-docker
+        restart: unless-stopped
+        
