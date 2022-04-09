@@ -110,7 +110,7 @@ cert_refresh_delay = 240
 ## It will not be used if the configured system DNS works.
 ## A resolver supporting DNSSEC is recommended. This may become mandatory.
 
-bootstrap_resolvers = ['9.9.9.11:53', '1.1.1.1:53']
+bootstrap_resolvers = ['9.9.9.9:53', '1.1.1.1:53']
 
 
 ## Never try to use the system DNS settings; unconditionally use the
@@ -202,7 +202,7 @@ block_ipv6 = true
 
 ## Enable a DNS cache to reduce latency and outgoing traffic
 
-cache = true
+cache = false
 
 
 ## Cache size
