@@ -11,11 +11,14 @@ This image comes with a configuration which:
 - [x] Listens on all interfaces
 - [x] Excludes Cloudflare, Google, and Yandex servers
 - [x] Uses public-resolvers v3
+- [x] "unstable" branch removed will use "testing" for future development 
+
 
 
 You can run with this configuration:
 
 `docker run -p 53:53/udp xtr0py/dnscrypt-proxy-2-docker`
+
 
 If you wish to override the configuration:
 
