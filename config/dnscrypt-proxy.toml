@@ -71,7 +71,7 @@ force_tcp = false
 
 ## How long a DNS query will wait for a response, in milliseconds
 
-timeout = 2500
+timeout = 5000
 
 
 ## Load-balancing strategy: 'p2' (default), 'ph', 'fastest' or 'random'
@@ -110,7 +110,7 @@ cert_refresh_delay = 240
 ## It will not be used if the configured system DNS works.
 ## A resolver supporting DNSSEC is recommended. This may become mandatory.
 
-fallback_resolver = '9.9.9.9:53'
+bootstrap_resolvers = ['9.9.9.9:53', '1.1.1.1:53']
 
 
 ## Never try to use the system DNS settings; unconditionally use the
@@ -202,7 +202,7 @@ block_ipv6 = true
 
 ## Enable a DNS cache to reduce latency and outgoing traffic
 
-cache = true
+cache = false
 
 
 ## Cache size
@@ -283,30 +283,30 @@ cache_neg_ttl = 60
 ##   ads*.example.*
 ##   ads*.example[0-9]*.com
 ##
-## Example blacklist files can be found at https://download.dnscrypt.info/blacklists/
-## A script to build blacklists from public feeds can be found in the
-## `utils/generate-domains-blacklists` directory of the dnscrypt-proxy source code.
+## Example blacklist files can be found at https://download.dnscrypt.info/blocklists/
+## A script to build blocklist from public feeds can be found in the
+## `utils/generate-domains-blocklists` directory of the dnscrypt-proxy source code.
 
-[blacklist]
+[blocked_names]
 
-  ## Path to the file of blocking rules (absolute, or relative to the same directory as the executable file)
+## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
 
-  # blacklist_file = 'blacklist.txt'
-
-
-  ## Optional path to a file logging blocked queries
-
-  # log_file = 'blocked.log'
+# blocked_names_file = 'blocked-names.txt'
 
 
-  ## Optional log format: tsv or ltsv (default: tsv)
+## Optional path to a file logging blocked queries
 
-  # log_format = 'tsv'
+# log_file = 'blocked.log'
+
+
+## Optional log format: tsv or ltsv (default: tsv)
+
+# log_format = 'tsv'
 
 
 
 ###########################################################
-#        Pattern-based IP blocking (IP blacklists)        #
+#        Pattern-based IP blocking (IP blocklists)        #
 ###########################################################
 
 ## IP blacklists are made of one pattern per line. Example of valid patterns:
@@ -315,16 +315,16 @@ cache_neg_ttl = 60
 ##   fe80:abcd:*
 ##   192.168.1.4
 
-[ip_blacklist]
+[blocked_ips]
 
-  ## Path to the file of blocking rules (absolute, or relative to the same directory as the executable file)
+## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
 
-  # blacklist_file = 'ip-blacklist.txt'
+# blocked_ips_file = 'blocked-ips.txt'
 
 
-  ## Optional path to a file logging blocked queries
+## Optional path to a file logging blocked queries
 
-  # log_file = 'ip-blocked.log'
+# log_file = 'blocked-ips.log'
 
 
   ## Optional log format: tsv or ltsv (default: tsv)
