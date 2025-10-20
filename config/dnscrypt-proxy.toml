@@ -62,7 +62,7 @@ require_nolog = true
 require_nofilter = true
 
 # Server names to avoid even if they match all criteria
-disabled_server_names = ['Yandex', 'Google', 'cloudflare']
+disabled_server_names = ['cloudflare', 'cloudflare-ipv6', 'google', 'yandex', 'yandex-ipv6']
 
 ## Always use TCP to connect to upstream servers
 
