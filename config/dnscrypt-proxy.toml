@@ -202,27 +202,32 @@ block_ipv6 = true
 
 ## Enable a DNS cache to reduce latency and outgoing traffic
 
-cache = false
+cache = true
 
 
 ## Cache size
 
-cache_size = 4096
+cache_size = 65536
 
 
 ## Minimum TTL for cached entries
 
-cache_min_ttl = 2400
+cache_min_ttl = 300
 
 
 ## Maximum TTL for cached entries
 
-cache_max_ttl = 86400
+cache_max_ttl = 3600
 
 
-## TTL for negatively cached entries
+## Minimum TTL for negatively cached entries
 
-cache_neg_ttl = 60
+cache_neg_min_ttl = 5
+
+
+## Maximum TTL for negatively cached entries
+
+cache_neg_max_ttl = 120
 
 
 
