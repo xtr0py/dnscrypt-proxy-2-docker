@@ -5,7 +5,8 @@
 This is a Docker image containing [DNSCrypt Proxy 2.x](https://github.com/jedisct1/dnscrypt-proxy). You can use this to set up a DNS proxy on your local network which resolves queries using DNSCrypt or DNS-over-HTTPS (DoH) rather than sending plaintext DNS queries over the Internet.
 
 This image comes with a configuration which:
-- [x] Runs DNScrypt-proxy 2.1.14 
+- [x] Leverages caching for lower latency
+- [x] Runs DNScrypt-proxy 2.1.15 
 - [x] Queries via DNS-over-HTTPS (DoH) and DNSCrypt
 - [x] Posits DNSSEC enabled, no logging, no filtering servers
 - [x] Listens on all interfaces
