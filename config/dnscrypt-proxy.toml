@@ -212,7 +212,7 @@ cache_size = 65536
 
 ## Minimum TTL for cached entries
 
-cache_min_ttl = 30
+cache_min_ttl = 60
 
 
 ## Maximum TTL for cached entries
@@ -227,7 +227,7 @@ cache_neg_min_ttl = 5
 
 ## Maximum TTL for negatively cached entries
 
-cache_neg_max_ttl = 120
+cache_neg_max_ttl = 60
 
 
 
