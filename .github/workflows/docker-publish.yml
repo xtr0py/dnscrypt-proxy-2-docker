@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       dnscrypt_proxy_release:
-        description: "DNSCrypt Proxy Release (blank = latest upstream)"
+        description: "DNSCrypt Proxy Release (blank = use DNSCRYPT_PROXY_VERSION file)"
         required: false
 
 env:
@@ -27,8 +27,7 @@ jobs:
         run: |
           VERSION="${{ github.event.inputs.dnscrypt_proxy_release }}"
           if [ -z "$VERSION" ]; then
-            VERSION="$(curl -fsSL https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest \
-              | python -c "import sys,json; print(json.load(sys.stdin)['tag_name'].lstrip('v'))")"
+            VERSION="$(cat DNSCRYPT_PROXY_VERSION)"
           fi
           echo "DNSCRYPT_PROXY_VERSION=$VERSION" >> "$GITHUB_ENV"
 
