@@ -1,5 +1,32 @@
+# VCS / CI metadata (not needed in image)
 .git
-.gitignore
 .github
-.gitattributes
-README.md
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+*~
+
+# Env / secrets
+.env
+.env.*
+*.pem
+*.key
+secrets.*
+*.secret
+
+# Logs / temp / build outputs
+*.log
+tmp
+temp
+dist
+build
+out
+
+# Docs (not needed inside image)
+README*
+LICENSE*
+*.md
