@@ -46,14 +46,15 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ env.DNSCRYPT_PROXY_VERSION }}
+            type=raw,value=${{ env.DNSCRYPT_PROXY_VERSION }},enable=${{ github.ref_name == 'master' }}
             type=raw,value=latest,enable=${{ github.ref_name == 'master' }}
             type=raw,value=testing,enable=${{ github.ref_name == 'testing' }}
+            type=raw,value=testing-${{ env.DNSCRYPT_PROXY_VERSION }},enable=${{ github.ref_name == 'testing' }}
 
       - uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
-          build-args: VERSION=${{ env.DNSCRYPT_PROXY_VERSION }}
+          build-args: RELEASE_TAG=${{ env.DNSCRYPT_PROXY_VERSION }}
           tags: ${{ steps.meta.outputs.tags }}
           push: true
