@@ -23,13 +23,34 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Determine DNSCrypt version
+        id: ver
         shell: bash
         run: |
           VERSION="${{ github.event.inputs.dnscrypt_proxy_release }}"
           if [ -z "$VERSION" ]; then
             VERSION="$(cat DNSCRYPT_PROXY_VERSION)"
           fi
-          echo "DNSCRYPT_PROXY_VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Compute Docker tags
+        id: tags
+        shell: bash
+        run: |
+          IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
+          VERSION="${{ steps.ver.outputs.version }}"
+
+          if [ "${{ github.ref_name }}" = "master" ]; then
+            # Release tags
+            TAGS="$IMAGE:$VERSION,$IMAGE:latest"
+          elif [ "${{ github.ref_name }}" = "testing" ]; then
+            # Testing tags
+            TAGS="$IMAGE:testing,$IMAGE:testing-$VERSION"
+          else
+            # Shouldn't happen due to branch filter, but safe fallback
+            TAGS="$IMAGE:$VERSION"
+          fi
+
+          echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
 
       - uses: docker/setup-buildx-action@v3
 
@@ -39,21 +60,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Docker metadata (tags)
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=raw,value=${{ env.DNSCRYPT_PROXY_VERSION }},enable=${{ github.ref_name == 'master' }}
-            type=raw,value=latest,enable=${{ github.ref_name == 'master' }}
-            type=raw,value=testing,enable=${{ github.ref_name == 'testing' }}
-            type=raw,value=testing-${{ env.DNSCRYPT_PROXY_VERSION }},enable=${{ github.ref_name == 'testing' }}
-
       - uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
-          build-args: RELEASE_TAG=${{ env.DNSCRYPT_PROXY_VERSION }}
-          tags: ${{ steps.meta.outputs.tags }}
+          build-args: RELEASE_TAG=${{ steps.ver.outputs.version }}
+          tags: ${{ steps.tags.outputs.tags }}
           push: true
