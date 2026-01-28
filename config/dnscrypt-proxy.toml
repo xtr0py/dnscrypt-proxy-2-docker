@@ -71,7 +71,7 @@ force_tcp = false
 
 ## How long a DNS query will wait for a response, in milliseconds
 
-timeout = 5000
+timeout = 3000
 
 
 ## Load-balancing strategy: 'p2' (default), 'ph', 'fastest' or 'random'
