@@ -1,1 +1,25 @@
-config/public-resolvers.md*
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Env / secrets (never commit these)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+*.secret
+
+# Logs / temp
+*.log
+tmp/
+temp/
+
+# Previous contents that were enabled. Will monitor for effect
+#config/public-resolvers.md*

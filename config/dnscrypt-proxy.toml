@@ -71,7 +71,7 @@ force_tcp = false
 
 ## How long a DNS query will wait for a response, in milliseconds
 
-timeout = 5000
+timeout = 1500
 
 
 ## Load-balancing strategy: 'p2' (default), 'ph', 'fastest' or 'random'
@@ -207,27 +207,29 @@ cache = true
 
 ## Cache size
 
-cache_size = 65536
+cache_size = 8192
 
 
 ## Minimum TTL for cached entries
 
-cache_min_ttl = 60
+cache_min_ttl = 0
 
 
 ## Maximum TTL for cached entries
 
-cache_max_ttl = 21600
+cache_max_ttl = 0
+
 
 
 ## Minimum TTL for negatively cached entries
 
-cache_neg_min_ttl = 5
+cache_neg_min_ttl = 60
 
 
 ## Maximum TTL for negatively cached entries
 
-cache_neg_max_ttl = 60
+cache_neg_max_ttl = 600
+
 
 
 

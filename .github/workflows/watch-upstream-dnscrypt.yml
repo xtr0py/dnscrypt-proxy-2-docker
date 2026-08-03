@@ -1,0 +1,67 @@
+name: Watch upstream dnscrypt-proxy releases (auto-update testing)
+
+on:
+  schedule:
+    - cron: "0 9 * * *"   # daily at 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    # Guard rail: scheduled runs will already use the default branch workflow file,
+    # but this prevents accidental manual runs from non-default branches doing unexpected things.
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout testing branch
+        uses: actions/checkout@v4
+        with:
+          ref: testing
+          fetch-depth: 0
+
+      - name: Get latest upstream release version
+        id: upstream
+        shell: bash
+        run: |
+          LATEST="$(curl -fsSL https://api.github.com/repos/DNSCrypt/dnscrypt-proxy/releases/latest \
+            | python -c "import sys,json; print(json.load(sys.stdin)['tag_name'].lstrip('v'))")"
+          echo "latest=$LATEST" >> "$GITHUB_OUTPUT"
+          echo "Latest upstream: $LATEST"
+
+      - name: Compare & update DNSCRYPT_PROXY_VERSION
+        id: update
+        shell: bash
+        run: |
+          CURRENT="$(cat DNSCRYPT_PROXY_VERSION 2>/dev/null || true)"
+          LATEST="${{ steps.upstream.outputs.latest }}"
+
+          echo "Current in testing: $CURRENT"
+          echo "Latest upstream:     $LATEST"
+
+          if [ -z "$LATEST" ]; then
+            echo "Upstream version is empty. Failing for safety."
+            exit 1
+          fi
+
+          if [ "$CURRENT" = "$LATEST" ]; then
+            echo "No update needed."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "$LATEST" > DNSCRYPT_PROXY_VERSION
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push to testing
+        if: steps.update.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add DNSCRYPT_PROXY_VERSION
+          git commit -m "chore: bump dnscrypt-proxy to ${{ steps.upstream.outputs.latest }}"
+          git push origin HEAD:testing
